@@ -19,6 +19,11 @@
 #define ATOI 0
 #define PUTSTR 1
 
+/*
+** Combine ft_putstr and simple version of ft_atoi into a single ft_utils because of Norminette,
+** Macro of the usage is defined to increase the readability.
+*/
+
 static pid_t	ft_utils(int usage, char *str)
 {
 	pid_t	id;
@@ -46,6 +51,11 @@ static pid_t	ft_utils(int usage, char *str)
 	}
 	return (id);
 }
+
+/*
+** \033[0;32m is to set the colour of the printed text on terminal,
+** \033[0m is to reset to default.
+*/
 
 static int	print_message(int condition)
 {
@@ -81,8 +91,10 @@ static short	send_signal(pid_t server_pid, char c)
 	int	shift;
 
 	shift = 8;
+	// Run the loop 8 times to send one ASCII character (1 byte / 8 bits) through 1/0
 	while (--shift >= 0)
 	{
+		// Taking the bits from left to right through bitwise operator
 		if (c & (0b000000001 << shift))
 		{	
 			if (kill(server_pid, SIGUSR1) == -1)
@@ -93,6 +105,7 @@ static short	send_signal(pid_t server_pid, char c)
 			if (kill(server_pid, SIGUSR2) == -1)
 				return (0);
 		}
+		// Suspend the execution after each signal is sent so that the server side does not mess up and corrupt the data
 		usleep(50);
 	}
 	return (1);
@@ -105,6 +118,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 3)
 		return (print_message(HINTS));
+	// Prepared to receive SIGUSR1 from the server and print out acknowledgement message
 	signal(SIGUSR1, success);
 	server_pid = ft_utils(ATOI, argv[1]);
 	i = 0;
@@ -114,7 +128,9 @@ int	main(int argc, char *argv[])
 			return (print_message(FAILED));
 		i++;
 	}
+	// After going through every characters in the string, tell the server its end of transmission
 	send_signal(server_pid, EOT);
+	// Wait for a while to ensure that client side receive SIGUSR1 and print acknowledgement before exiting the program
 	usleep(50);
 	return (0);
 }
