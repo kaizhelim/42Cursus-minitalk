@@ -13,6 +13,7 @@
 #ifndef MINITALK_H
 # define MINITALK_H
 
+// Define ASCII 4th Character (End of Tranmission) as macro to improve readability
 # define EOT 4
 
 # include <unistd.h>
