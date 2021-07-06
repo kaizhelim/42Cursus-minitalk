@@ -17,8 +17,10 @@ We are creating a communication program in the form of a client and server.
 - Unix Processes in C
 - Unix Threads in C
 
+### Resources
 
-### Source Codes
-Source codes will be updated and uploaded soon.
+- Source Codes: [minitalk](https://github.com/kaizhelim/42Cursus-minitalk/tree/main/minitalk)
+- Learning Notes: [UNIX Processes in C](https://github.com/kaizhelim/42Cursus-minitalk/blob/main/notes/unix_processes_in_c.md) and [Bitwise Operator](https://github.com/kaizhelim/42Cursus-minitalk/blob/main/notes/bitwise_operator.md)
 
-Thanks for your patience!
+### Final Grades
+<image src = "https://user-images.githubusercontent.com/76621210/124611319-e781a180-dea3-11eb-9b77-df77597ba58a.png" width=150>
