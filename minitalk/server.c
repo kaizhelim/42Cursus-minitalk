@@ -29,7 +29,7 @@ static void	ft_putnbr(int n)
 	write(1, &c, 1);
 }
 
-void	mt_putstr(char *s)
+static void	ft_putstr(char *s)
 {
 	int	i;
 
@@ -72,10 +72,10 @@ int	main(void)
 	struct sigaction	sa;
 	sigset_t			ss;
 
-	mt_putstr("\e[1;97;44m-------- Welcome to Minitalk --------\033[0m\n");
-	mt_putstr("\033[35;7mThe server's current PID is:\033[0m ");
+	ft_putstr("\e[1;97;44m-------- Welcome to Minitalk --------\033[0m\n");
+	ft_putstr("\033[35;7mThe server's current PID is:\033[0m ");
 	ft_putnbr((int)(getpid()));
-	mt_putstr("\n");
+	ft_putstr("\n");
 	sigemptyset(&ss);
 	sigaddset(&ss, SIGUSR1);
 	sigaddset(&ss, SIGUSR2);
